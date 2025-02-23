@@ -194,29 +194,72 @@ class EZFFMPEG {
 
       let videoString = "";
       let audioString = "";
+      let textString = "";
 
       let videoConcatInputs = [];
       let audioConcatInputs = [];
 
+      let blackConcatCount = 0;
+      let currentPosition = 0;
+
       this.videoOrAudioClips.forEach((clip, index) => {
         if (clip.type === "video") {
-          videoString += `[${index}:v]trim=start=${clip.cutFrom}:end=${
-            Helpers.getClipEnd(clip)
-          },setpts=PTS-STARTPTS,scale=${this.options.width}:${
-            this.options.height
-          }:force_original_aspect_ratio=decrease,pad=${this.options.width}:${
-            this.options.height
-          }:(ow-iw)/2:(oh-ih)/2[v${index}];`;
+          // see if we need to add a black screen to fill the gap
+          if (clip.position > currentPosition) {
+            const { blackStringPart, blackConcatInput } =
+              Helpers.getBlackString(
+                clip.position - currentPosition,
+                this.options.width,
+                this.options.height,
+                blackConcatCount
+              );
+            videoString += blackStringPart;
+            videoConcatInputs.push(blackConcatInput);
+            blackConcatCount++;
+          }
+
+          videoString += `[${index}:v]trim=start=${
+            clip.cutFrom
+          }:end=${Helpers.getTrimEnd(clip)},setpts=PTS-STARTPTS,scale=${
+            this.options.width
+          }:${this.options.height}:force_original_aspect_ratio=decrease,pad=${
+            this.options.width
+          }:${this.options.height}:(ow-iw)/2:(oh-ih)/2[v${index}];`;
           videoConcatInputs.push(`[v${index}]`);
           if (clip.hasAudio) {
-            const { audioStringPart, audioConcatInput } = Helpers.getClipAudioString(clip, index);
+            const { audioStringPart, audioConcatInput } =
+              Helpers.getClipAudioString(clip, index);
             audioString += audioStringPart;
             audioConcatInputs.push(audioConcatInput);
+          }
+
+          currentPosition = clip.end;
+
+          // check if we need a black screen for the end of the video
+          if (index === this.videoOrAudioClips.length - 1) {
+            const maxEnd = Math.max(
+              ...this.videoOrAudioClips.map((c) => c.end),
+              ...this.textClips.map((c) => c.end)
+            );
+            if (currentPosition < maxEnd) {
+              const { blackStringPart, blackConcatInput } =
+                Helpers.getBlackString(
+                  maxEnd - currentPosition,
+                  this.options.width,
+                  this.options.height,
+                  blackConcatCount
+                );
+              videoString += blackStringPart;
+              videoConcatInputs.push(blackConcatInput);
+              blackConcatCount++;
+              currentPosition = maxEnd;
+            }
           }
         }
 
         if (clip.type === "audio") {
-          const { audioStringPart, audioConcatInput } = Helpers.getClipAudioString(clip, index);
+          const { audioStringPart, audioConcatInput } =
+            Helpers.getClipAudioString(clip, index);
           audioString += audioStringPart;
           audioConcatInputs.push(audioConcatInput);
         }
@@ -225,9 +268,11 @@ class EZFFMPEG {
       filterComplex += videoString;
       filterComplex += audioString;
 
+      let combinedVideoName = "[outv]";
+
       if (videoConcatInputs.length > 0) {
         filterComplex += videoConcatInputs.join("");
-        filterComplex += `concat=n=${videoConcatInputs.length}:v=1:a=0[outv];`;
+        filterComplex += `concat=n=${videoConcatInputs.length}:v=1:a=0${combinedVideoName};`;
       }
 
       if (audioConcatInputs.length > 0) {
@@ -235,13 +280,40 @@ class EZFFMPEG {
         filterComplex += `amix=inputs=${audioConcatInputs.length}:duration=longest[outa];`;
       }
 
+      if (this.textClips.length > 0) {
+        textString += `${combinedVideoName}`;
+
+        this.textClips.forEach((clip, index) => {
+          textString += `drawtext=text='${Helpers.escapeSingleQuotes(
+            clip.text
+          )}':fontfile=${clip.fontFile}:x=(${
+            this.options.width
+          } - text_w)/2 + ${clip.centerX}:y=(${
+            this.options.height
+          } - text_h)/2 + ${clip.centerY}
+          :fontsize=${clip.fontSize}:fontcolor=${
+            clip.fontColor
+          }:enable='between(t,${clip.position},${clip.end})'`;
+
+          if (index === this.textClips.length - 1) {
+            textString += `[outVideoAndText];`;
+          } else {
+            textString += `[text${index}];[text${index}]`;
+          }
+        });
+
+        combinedVideoName = "[outVideoAndText]";
+      }
+
+      filterComplex += textString;
+
       // Build the complete command
       let ffmpegCmd = `ffmpeg -y ${this._getInputStreams()} -filter_complex "${filterComplex}" `;
 
       // Add mapping based on what streams we have
 
       if (videoConcatInputs.length > 0) {
-        ffmpegCmd += `-map "[outv]" `;
+        ffmpegCmd += `-map "${combinedVideoName}" `;
       }
 
       if (audioConcatInputs.length > 0) {

@@ -1,4 +1,4 @@
-function getClipEnd(clip) {
+function getTrimEnd(clip) {
   return clip.cutFrom + (clip.end - clip.position);
 }
 
@@ -7,7 +7,9 @@ function getClipAudioString(clip, index) {
   const audioConcatInput = `[a${index}]`;
   const audioStringPart = `[${index}:a]volume=${clip.volume},atrim=start=${
     clip.cutFrom
-  }:end=${getClipEnd(clip)},adelay=${adelay}|${adelay},asetpts=PTS-STARTPTS${audioConcatInput};`;
+  }:end=${getTrimEnd(
+    clip
+  )},adelay=${adelay}|${adelay},asetpts=PTS-STARTPTS${audioConcatInput};`;
 
   return {
     audioStringPart,
@@ -15,7 +17,21 @@ function getClipAudioString(clip, index) {
   };
 }
 
+function getBlackString(duration, width, height, index) {
+  const blackConcatInput = `[black${index}]`;
+  return {
+    blackStringPart: `color=c=black:s=${width}x${height}:d=${duration}${blackConcatInput};`,
+    blackConcatInput,
+  };
+}
+
+function escapeSingleQuotes(text) {
+  return text.replace(/'/g, "\\'");
+}
+
 module.exports = {
-  getClipEnd,
+  getTrimEnd,
   getClipAudioString,
+  getBlackString,
+  escapeSingleQuotes,
 };

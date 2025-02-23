@@ -1,4 +1,4 @@
-# ezffmpeg
+# ezffmpeg - the eziest way to use ffmpeg
 
 A simple and powerful Node.js library that wraps ffmpeg to make video editing easier. This library provides an intuitive API for common video editing operations like concatenation, rotation, scaling, and adding text overlays.
 
