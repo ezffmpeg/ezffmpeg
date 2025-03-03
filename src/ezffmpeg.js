@@ -293,14 +293,53 @@ class EZFFMPEG {
         this.textClips.forEach((clip, index) => {
           textString += `drawtext=text='${Helpers.escapeSingleQuotes(
             clip.text
-          )}':fontfile=${clip.fontFile}:x=(${
-            this.options.width
-          } - text_w)/2 + ${clip.centerX}:y=(${
-            this.options.height
-          } - text_h)/2 + ${clip.centerY}
+          )}':fontfile=${clip.fontFile}
           :fontsize=${clip.fontSize}:fontcolor=${
             clip.fontColor
           }:enable='between(t,${clip.position},${clip.end})'`;
+
+          if (typeof clip.centerX === "number") {
+            textString += `:x=(${this.options.width} - text_w)/2 + ${clip.centerX}`;
+          } else if (typeof clip.x === "number") {
+            textString += `:x=${clip.x}`;
+          }
+
+          if (typeof clip.centerY === "number") {
+            textString += `:y=(${this.options.height} - text_h)/2 + ${clip.centerY}`;
+          } else if (typeof clip.y === "number") {
+            textString += `:y=${clip.y}`;
+          }
+
+          if (clip.borderColor) {
+            textString += `:bordercolor=${clip.borderColor}`;
+          }
+
+          if (clip.borderWidth) {
+            textString += `:borderw=${clip.borderWidth}`;
+          }
+
+          if (clip.shadowColor) {
+            textString += `:shadowcolor=${clip.shadowColor}`;
+          }
+
+          if (clip.shadowX) {
+            textString += `:shadowx=${clip.shadowX}`;
+          }
+
+          if (clip.shadowY) {
+            textString += `:shadowy=${clip.shadowY}`;
+          }
+
+          if (clip.backgroundColor) {
+            textString += `:box=1:boxcolor=${clip.backgroundColor}`;
+            if (clip.backgroundOpacity) {
+              textString += `@${clip.backgroundOpacity}`;
+            }
+          }
+
+          if (clip.padding) {
+            textString += `:boxborderw=${clip.padding}`;
+          }
 
           if (index === this.textClips.length - 1) {
             textString += `[outVideoAndText];`;
