@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EZFFMPEG - The eziest way to use ffmpeg</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add Prism CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>EZFFMPEG</h1>
+            <h2>The eziest way to use ffmpeg</h2>
+        </div>
+
+        <div class="buttons">
+            <a href="https://www.npmjs.com/package/ezffmpeg" class="button primary-button">
+                📦 Install Now
+            </a>
+            <a href="https://github.com/yourusername/ezffmpeg" class="button secondary-button">
+                <span>GitHub</span>
+            </a>
+        </div>
+
+        <div class="features">
+            <div class="feature">Easy video concatenation</div>
+            <div class="feature">Automatic rotation handling</div>
+            <div class="feature">Video scaling and padding</div>
+            <div class="feature">Audio processing</div>
+            <div class="feature">Text overlay support</div>
+            <div class="feature">Position and timing control</div>
+        </div>
+
+        <div class="example">
+            <div class="code-block">
+                <pre><code class="language-javascript">const EZFFMPEG = require('ezffmpeg');
+
+const ffmpeg = new EZFFMPEG({
+    width: 1920,
+    height: 1080
+});
+
+// Load and concatenate videos
+await ffmpeg.loadMultiple([
+    {
+        type: 'video',
+        url: 'video1.mp4',
+        rotation: -90
+    },
+    {
+        type: 'video',
+        url: 'video2.mp4'
+    },
+    {
+        type: 'text',
+        text: 'Hello World',
+        fontSize: 48,
+        fontColor: 'white'
+    }
+]);
+
+// Export the final video
+await ffmpeg.export({
+    outputPath: 'output.mp4'
+});</code></pre>
+            </div>
+            <div class="video-preview">
+                <video width="100%" controls>
+                    <source src="path/to/demo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
+        <div class="version">
+            <a href="https://github.com/yourusername/ezffmpeg/blob/main/docs/api.md">Documentation</a>
+            · v1.0.0
+        </div>
+    </div>
+
+    <!-- Add Prism JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+</body>
+</html>

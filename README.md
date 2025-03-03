@@ -57,12 +57,11 @@ project
     },
     {
       type: "text",
-      text: "ezffmpeg",
+      text: "this is so ez",
       position: 0,
       end: 3,
       fontSize: 50,
       fontColor: "white",
-      fontFile: "./fonts/Arial-Bold.ttf",
       borderWidth: 5,
       borderColor: "#000000",
     },
