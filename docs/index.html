@@ -36,24 +36,6 @@
       rel="stylesheet"
     />
     <style>
-      .mockup-code pre code {
-        font-family: "Fira Code", Consolas, Monaco, monospace;
-      }
-      .mockup-code .token.comment {
-        color: #6a9955;
-      }
-      .mockup-code .token.string {
-        color: #ce9178;
-      }
-      .mockup-code .token.number {
-        color: #b5cea8;
-      }
-      .mockup-code .token.property {
-        color: #9cdcfe;
-      }
-      .mockup-code .token.keyword {
-        color: #569cd6;
-      }
       pre[class*="language-"] {
         border-radius: 0 0 0.5rem 0.5rem;
         margin: 0;
@@ -114,8 +96,8 @@
             Edit videos without having to use ffmpeg
           </h2>
           <div class="flex justify-center gap-4 mt-8">
-            <a href="/docs.html" class="btn bg-white"> 📚 API Documentation </a>
-            <a href="https://github.com/ezffmpeg/ezffmpeg" class="btn bg-white">
+            <a href="docs.html" class="btn btn-lg bg-white"> 📚 API Documentation </a>
+            <a href="https://github.com/ezffmpeg/ezffmpeg" class="btn btn-lg bg-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -245,10 +227,7 @@ const project = new ezffmpeg({
               <div
                 class="px-4 py-2 bg-gray-900 border-b border-gray-700 flex items-center"
               >
-                <div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
-                <div class="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
-                <div class="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
-                <span class="text-gray-400 text-sm ml-2">example.js</span>
+                <span class="text-gray-400 text-sm">example.js</span>
               </div>
               <pre
                 class="line-numbers p-4 m-0"
@@ -329,9 +308,9 @@ loadAndExportVideos();
     </div>
 
     <div class="flex justify-center gap-8 py-4 border-base-300 max-w-3xl mx-auto mt-16">
-      <a href="https://github.com/ezffmpeg/ezffmpeg" class="text-base-content/70 hover:text-base-content underline">GitHub</a>
-      <a href="docs.html" class="text-base-content/70 hover:text-base-content underline">API Documentation</a>
-      <a href="https://twitter.com/coldwaterbottle" class="text-base-content/70 hover:text-base-content underline">Twitter</a>
+      <a href="https://github.com/ezffmpeg/ezffmpeg" target="_blank" rel="noopener noreferrer" class="text-base-content/70 hover:text-base-content underline">GitHub</a>
+      <a href="docs.html" target="_blank" rel="noopener noreferrer" class="text-base-content/70 hover:text-base-content underline">API Documentation</a>
+      <a href="https://twitter.com/coldwaterbottle" target="_blank" rel="noopener noreferrer" class="text-base-content/70 hover:text-base-content underline">Twitter</a>
     </div>
     
     <footer class="footer footer-center pb-4 text-base-content/50">

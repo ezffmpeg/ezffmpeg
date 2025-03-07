@@ -36,24 +36,6 @@
       rel="stylesheet"
     />
     <style>
-      .mockup-code pre code {
-        font-family: "Fira Code", Consolas, Monaco, monospace;
-      }
-      .mockup-code .token.comment {
-        color: #6a9955;
-      }
-      .mockup-code .token.string {
-        color: #ce9178;
-      }
-      .mockup-code .token.number {
-        color: #b5cea8;
-      }
-      .mockup-code .token.property {
-        color: #9cdcfe;
-      }
-      .mockup-code .token.keyword {
-        color: #569cd6;
-      }
       pre[class*="language-"] {
         border-radius: 0 0 0.5rem 0.5rem;
         margin: 0;
@@ -95,17 +77,65 @@
         font-family: "Fira Code", Consolas, Monaco, monospace;
         font-size: 0.85rem;
       }
+
+      /* Table styles */
+      table.table {
+        border: 1px solid #e5e7eb !important;
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+
+      table.table th {
+        border-bottom: 1px solid #e5e7eb;
+        border-right: none;
+      }
+
+      table.table td {
+        border-right: none;
+        border-left: none;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      table.table tr:last-child td {
+        border-bottom: none;
+      }
+
+      table.table tbody {
+        background-color: white;
+      }
+
+      .optional {
+        color: #6b7280;
+        font-style: italic;
+        font-weight: normal;
+        font-size: 0.9em;
+      }
     </style>
   </head>
   <body class="min-h-screen">
     <div class="navbar border-b border-base-300">
       <div class="navbar-start">
         <a href="index.html" class="text-xl font-bold flex items-center gap-2">
-          <span class="text-2xl">🍋</span> ezffmpeg <span class="text-2xl">🎥</span>
+          <span class="text-2xl">🍋</span> ezffmpeg
+          <span class="text-2xl">🎥</span>
         </a>
       </div>
       <div class="navbar-end">
-        <a href="https://github.com/ezffmpeg/ezffmpeg" class="btn btn-ghost">
+        <a
+          href="https://github.com/ezffmpeg/ezffmpeg"
+          class="btn btn-sm bg-white"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+            />
+          </svg>
           GitHub
         </a>
       </div>
@@ -116,25 +146,46 @@
       <div class="w-full md:w-64 p-4 border-r border-base-300">
         <div class="sticky top-4">
           <div class="mb-6">
-            <h3 class="font-bold uppercase text-xs tracking-wider text-base-content/70 mb-2">OVERVIEW</h3>
+            <h3
+              class="font-bold uppercase text-xs tracking-wider text-base-content/70 mb-2"
+            >
+              OVERVIEW
+            </h3>
             <ul class="menu menu-compact">
-              <li><a href="#getting-started" class="font-medium">Get Started</a></li>
+              <li>
+                <a href="#getting-started" class="font-medium">Get Started</a>
+              </li>
             </ul>
           </div>
-          
+
           <div class="mb-6">
-            <h3 class="font-bold uppercase text-xs tracking-wider text-base-content/70 mb-2">API</h3>
+            <h3
+              class="font-bold uppercase text-xs tracking-wider text-base-content/70 mb-2"
+            >
+              API
+            </h3>
             <ul class="menu menu-compact">
-              <li><a href="#constructor" class="font-medium">Constructor</a></li>
+              <li>
+                <a href="#constructor" class="font-medium">Constructor</a>
+              </li>
               <li><a href="#load" class="font-medium">load()</a></li>
               <li><a href="#export" class="font-medium">export()</a></li>
             </ul>
           </div>
-          
+
           <div class="mb-6">
-            <h3 class="font-bold uppercase text-xs tracking-wider text-base-content/70 mb-2">GUIDES</h3>
+            <h3
+              class="font-bold uppercase text-xs tracking-wider text-base-content/70 mb-2"
+            >
+              EXAMPLES
+            </h3>
             <ul class="menu menu-compact">
-              <li><a href="#examples" class="font-medium">Examples</a></li>
+              <li><a href="#concatenate-videos" class="font-medium">Concatenate Videos</a></li>
+              <li><a href="#text-overlay" class="font-medium">Text Overlay</a></li>
+              <li><a href="#background-music" class="font-medium">Background Music</a></li>
+              <li><a href="#custom-font" class="font-medium">Custom Font</a></li>
+              <li><a href="#text-with-stroke" class="font-medium">Text with Stroke</a></li>
+              <li><a href="#text-with-shadow" class="font-medium">Text with Shadow</a></li>
             </ul>
           </div>
         </div>
@@ -144,17 +195,33 @@
       <div class="flex-1 p-4 md:p-8 max-w-4xl">
         <section id="getting-started" class="mb-16">
           <h1 class="text-4xl font-bold mb-6">Getting Started</h1>
-          
-          <p class="mb-4">Create and edit videos with JavaScript using ezffmpeg.</p>
-          
+
+          <p class="mb-4">
+            Create and edit videos with JavaScript using ezffmpeg.
+          </p>
+
           <h2 class="text-2xl font-bold mt-8 mb-4">Install with npm</h2>
-          <div class="mockup-code mb-8">
-            <pre><code class="language-bash">npm install ezffmpeg</code></pre>
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden mb-8">
+            <div
+              class="px-4 py-2 bg-gray-900 border-b border-gray-700 flex items-center"
+            >
+              <span class="text-gray-400 text-sm">Terminal</span>
+            </div>
+            <pre
+              class="p-4 m-0"
+            ><code class="language-bash">npm install ezffmpeg</code></pre>
           </div>
-          
+
           <h2 class="text-2xl font-bold mt-8 mb-4">Basic usage</h2>
-          <div class="mockup-code mb-8">
-            <pre><code class="language-javascript">const ezffmpeg = require('ezffmpeg');
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden mb-8">
+            <div
+              class="px-4 py-2 bg-gray-900 border-b border-gray-700 flex items-center"
+            >
+              <span class="text-gray-400 text-sm">example.js</span>
+            </div>
+            <pre
+              class="line-numbers p-4 m-0"
+            ><code class="language-javascript">const ezffmpeg = require('ezffmpeg');
 
 const project = new ezffmpeg({
   width: 1080,
@@ -177,27 +244,36 @@ async function createVideo() {
 createVideo();</code></pre>
           </div>
         </section>
-        
+
         <section id="constructor" class="mb-16">
           <h1 class="text-4xl font-bold mb-6">Constructor</h1>
-          
-          <p class="mb-4">Create a new ezffmpeg instance with your desired settings.</p>
-          
-          <div class="mockup-code mb-8">
-            <pre><code class="language-javascript">const project = new ezffmpeg({
+
+          <p class="mb-4">
+            Create a new ezffmpeg instance with your desired settings.
+          </p>
+
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden mb-8">
+            <div
+              class="px-4 py-2 bg-gray-900 border-b border-gray-700 flex items-center"
+            >
+              <span class="text-gray-400 text-sm">example.js</span>
+            </div>
+            <pre
+              class="line-numbers p-4 m-0"
+            ><code class="language-javascript">const project = new ezffmpeg({
   width: 1920,    // Output video width
   height: 1080,   // Output video height
   fps: 30,        // Frames per second (optional)
-  audioCodec: 'aac', // Audio codec (optional)
-  videoCodec: 'libx264' // Video codec (optional)
 });</code></pre>
           </div>
-          
+
           <h3 class="text-xl font-bold mt-6 mb-2">Available options</h3>
-          
+
           <div class="overflow-x-auto">
-            <table class="table w-full">
-              <thead>
+            <table
+              class="table w-full border border-base-300 rounded-xl overflow-hidden"
+            >
+              <thead class="bg-base-200">
                 <tr>
                   <th>Option</th>
                   <th>Type</th>
@@ -224,41 +300,37 @@ createVideo();</code></pre>
                   <td>30</td>
                   <td>Frames per second</td>
                 </tr>
-                <tr>
-                  <td>audioCodec</td>
-                  <td>string</td>
-                  <td>'aac'</td>
-                  <td>Audio codec to use</td>
-                </tr>
-                <tr>
-                  <td>videoCodec</td>
-                  <td>string</td>
-                  <td>'libx264'</td>
-                  <td>Video codec to use</td>
-                </tr>
               </tbody>
             </table>
           </div>
         </section>
-        
+
         <section id="load" class="mb-16">
           <h1 class="text-4xl font-bold mb-6">load() API</h1>
-          
-          <p class="mb-4">Load media elements (videos, images, audio, text) into your project.</p>
-          
-          <div class="mockup-code mb-8">
-            <pre><code class="language-javascript">await project.load([
+
+          <p class="mb-4">
+            Load media elements (videos, images, audio, text) into your project.
+          </p>
+
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden mb-8">
+            <div
+              class="px-4 py-2 bg-gray-900 border-b border-gray-700 flex items-center"
+            >
+              <span class="text-gray-400 text-sm">example.js</span>
+            </div>
+            <pre
+              class="line-numbers p-4 m-0"
+            ><code class="language-javascript">await project.load([
   {
     type: 'video',
-    url: 'video.mp4',
+    url: './assets/video.mp4',
     position: 0,
     end: 10,
     cutFrom: 2,
-    cutTo: 8
   },
   {
     type: 'audio',
-    url: 'audio.mp3',
+    url: 'https://example.com/audio.mp3',
     position: 0,
     end: 15
   },
@@ -272,16 +344,19 @@ createVideo();</code></pre>
   }
 ]);</code></pre>
           </div>
-          
+
           <h3 class="text-xl font-bold mt-6 mb-2">Media options</h3>
-          
+
           <h4 class="text-lg font-bold mt-4 mb-2">Video options</h4>
           <div class="overflow-x-auto mb-6">
-            <table class="table w-full">
-              <thead>
+            <table
+              class="table w-full border border-base-300 rounded-xl overflow-hidden"
+            >
+              <thead class="bg-base-200">
                 <tr>
                   <th>Option</th>
                   <th>Type</th>
+                  <th>Default</th>
                   <th>Description</th>
                 </tr>
               </thead>
@@ -289,49 +364,59 @@ createVideo();</code></pre>
                 <tr>
                   <td>type</td>
                   <td>string</td>
+                  <td>required</td>
                   <td>Must be 'video'</td>
                 </tr>
                 <tr>
                   <td>url</td>
                   <td>string</td>
+                  <td>required</td>
                   <td>Path or URL to the video file</td>
                 </tr>
                 <tr>
                   <td>position</td>
                   <td>number</td>
+                  <td>required</td>
                   <td>Start position in seconds in the output video</td>
                 </tr>
                 <tr>
                   <td>end</td>
                   <td>number</td>
+                  <td>required</td>
                   <td>End position in seconds in the output video</td>
                 </tr>
                 <tr>
                   <td>cutFrom</td>
                   <td>number</td>
-                  <td>Optional: Start cutting from this position in the source video</td>
+                  <td>0</td>
+                  <td>
+                    <span class="optional">Optional:</span> Start cutting from
+                    this position in the source video
+                  </td>
                 </tr>
                 <tr>
-                  <td>cutTo</td>
+                  <td>volume</td>
                   <td>number</td>
-                  <td>Optional: End cutting at this position in the source video</td>
-                </tr>
-                <tr>
-                  <td>rotation</td>
-                  <td>number</td>
-                  <td>Optional: Rotation angle in degrees</td>
+                  <td>1.0</td>
+                  <td>
+                    <span class="optional">Optional:</span> Volume level (1.0 is
+                    normal)
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          
+
           <h4 class="text-lg font-bold mt-4 mb-2">Audio options</h4>
           <div class="overflow-x-auto mb-6">
-            <table class="table w-full">
-              <thead>
+            <table
+              class="table w-full border border-base-300 rounded-xl overflow-hidden"
+            >
+              <thead class="bg-base-200">
                 <tr>
                   <th>Option</th>
                   <th>Type</th>
+                  <th>Default</th>
                   <th>Description</th>
                 </tr>
               </thead>
@@ -339,39 +424,50 @@ createVideo();</code></pre>
                 <tr>
                   <td>type</td>
                   <td>string</td>
+                  <td>required</td>
                   <td>Must be 'audio'</td>
                 </tr>
                 <tr>
                   <td>url</td>
                   <td>string</td>
+                  <td>required</td>
                   <td>Path or URL to the audio file</td>
                 </tr>
                 <tr>
                   <td>position</td>
                   <td>number</td>
+                  <td>required</td>
                   <td>Start position in seconds in the output video</td>
                 </tr>
                 <tr>
                   <td>end</td>
                   <td>number</td>
+                  <td>required</td>
                   <td>End position in seconds in the output video</td>
                 </tr>
                 <tr>
                   <td>volume</td>
                   <td>number</td>
-                  <td>Optional: Volume level (1.0 is normal)</td>
+                  <td>1.0</td>
+                  <td>
+                    <span class="optional">Optional:</span> Volume level (1.0 is
+                    normal)
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          
+
           <h4 class="text-lg font-bold mt-4 mb-2">Text options</h4>
           <div class="overflow-x-auto mb-6">
-            <table class="table w-full">
-              <thead>
+            <table
+              class="table w-full border border-base-300 rounded-xl overflow-hidden"
+            >
+              <thead class="bg-base-200">
                 <tr>
                   <th>Option</th>
                   <th>Type</th>
+                  <th>Default</th>
                   <th>Description</th>
                 </tr>
               </thead>
@@ -379,66 +475,169 @@ createVideo();</code></pre>
                 <tr>
                   <td>type</td>
                   <td>string</td>
+                  <td>required</td>
                   <td>Must be 'text'</td>
                 </tr>
                 <tr>
                   <td>text</td>
                   <td>string</td>
+                  <td>required</td>
                   <td>The text to display</td>
                 </tr>
                 <tr>
                   <td>position</td>
                   <td>number</td>
+                  <td>required</td>
                   <td>Start position in seconds in the output video</td>
                 </tr>
                 <tr>
                   <td>end</td>
                   <td>number</td>
+                  <td>required</td>
                   <td>End position in seconds in the output video</td>
                 </tr>
                 <tr>
                   <td>fontSize</td>
                   <td>number</td>
-                  <td>Font size in pixels</td>
+                  <td>48</td>
+                  <td><span class="optional">Optional:</span> Font size in pixels</td>
                 </tr>
                 <tr>
                   <td>fontColor</td>
                   <td>string</td>
-                  <td>Font color (CSS color name or hex)</td>
+                  <td>'white'</td>
+                  <td><span class="optional">Optional:</span> Font color (CSS color name or hex)</td>
                 </tr>
                 <tr>
-                  <td>x</td>
+                  <td>centerX</td>
                   <td>number</td>
-                  <td>Optional: X position (default: centered)</td>
+                  <td>0</td>
+                  <td>
+                    <span class="optional">Optional:</span>Center X position (default:
+                    centered)
+                  </td>
                 </tr>
                 <tr>
-                  <td>y</td>
+                  <td>centerY</td>
                   <td>number</td>
-                  <td>Optional: Y position (default: centered)</td>
+                  <td>0</td>
+                  <td>
+                    <span class="optional">Optional:</span>Center Y position (default:
+                    centered)
+                  </td>
+                </tr>
+                <tr>
+                    <td>x</td>
+                    <td>number</td>
+                    <td>null</td>
+                    <td>
+                      <span class="optional">Optional:</span>Top left X position (default:
+                      null)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>y</td>
+                    <td>number</td>
+                    <td>null</td>
+                    <td>
+                      <span class="optional">Optional:</span>Top left Y position (default:
+                      null)
+                    </td>
+                  </tr>
+                <tr>
+                  <td>fontFile</td>
+                  <td>string</td>
+                  <td>Arial</td>
+                  <td>
+                    <span class="optional">Optional:</span> Path to a custom font file (.ttf)
+                  </td>
+                </tr>
+                <tr>
+                  <td>borderColor</td>
+                  <td>string</td>
+                  <td>null</td>
+                  <td>
+                    <span class="optional">Optional:</span> Color of the text border (CSS color name or hex)
+                  </td>
+                </tr>
+                <tr>
+                  <td>borderWidth</td>
+                  <td>number</td>
+                  <td>0</td>
+                  <td>
+                    <span class="optional">Optional:</span> Width of the text border in pixels
+                  </td>
+                </tr>
+                <tr>
+                  <td>shadowColor</td>
+                  <td>string</td>
+                  <td>null</td>
+                  <td>
+                    <span class="optional">Optional:</span> Color of the text shadow (CSS color name or hex)
+                  </td>
+                </tr>
+                <tr>
+                  <td>shadowX</td>
+                  <td>number</td>
+                  <td>0</td>
+                  <td>
+                    <span class="optional">Optional:</span> Horizontal offset of the shadow in pixels
+                  </td>
+                </tr>
+                <tr>
+                  <td>shadowY</td>
+                  <td>number</td>
+                  <td>0</td>
+                  <td>
+                    <span class="optional">Optional:</span> Vertical offset of the shadow in pixels
+                  </td>
+                </tr>
+                <tr>
+                  <td>backgroundColor</td>
+                  <td>string</td>
+                  <td>null</td>
+                  <td>
+                    <span class="optional">Optional:</span> Background color for the text (CSS color name or hex)
+                  </td>
+                </tr>
+                <tr>
+                  <td>padding</td>
+                  <td>number</td>
+                  <td>0</td>
+                  <td>
+                    <span class="optional">Optional:</span> Padding around the text in pixels
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         </section>
-        
+
         <section id="export" class="mb-16">
           <h1 class="text-4xl font-bold mb-6">export() API</h1>
-          
+
           <p class="mb-4">Export your project to a video file.</p>
-          
-          <div class="mockup-code mb-8">
-            <pre><code class="language-javascript">await project.export({
+
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden mb-8">
+            <div
+              class="px-4 py-2 bg-gray-900 border-b border-gray-700 flex items-center"
+            >
+              <span class="text-gray-400 text-sm">example.js</span>
+            </div>
+            <pre
+              class="line-numbers p-4 m-0"
+            ><code class="language-javascript">await project.export({
   outputPath: 'output.mp4',
-  quality: 'high',
-  overwrite: true
 });</code></pre>
           </div>
-          
+
           <h3 class="text-xl font-bold mt-6 mb-2">Export options</h3>
-          
+
           <div class="overflow-x-auto">
-            <table class="table w-full">
-              <thead>
+            <table
+              class="table w-full border border-base-300 rounded-xl overflow-hidden"
+            >
+              <thead class="bg-base-200">
                 <tr>
                   <th>Option</th>
                   <th>Type</th>
@@ -453,41 +652,45 @@ createVideo();</code></pre>
                   <td>required</td>
                   <td>Path where the output video will be saved</td>
                 </tr>
-                <tr>
-                  <td>quality</td>
-                  <td>string</td>
-                  <td>'medium'</td>
-                  <td>Video quality: 'low', 'medium', 'high'</td>
-                </tr>
-                <tr>
-                  <td>overwrite</td>
-                  <td>boolean</td>
-                  <td>false</td>
-                  <td>Whether to overwrite existing files</td>
-                </tr>
               </tbody>
             </table>
           </div>
         </section>
-        
+
         <section id="examples" class="mb-16">
           <h1 class="text-4xl font-bold mb-6">Examples</h1>
-          
-          <h3 class="text-xl font-bold mt-6 mb-2">Concatenate multiple videos</h3>
-          <div class="mockup-code mb-8">
-            <pre><code class="language-javascript">await project.load([
-  { type: 'video', url: 'video1.mp4', position: 0 },
-  { type: 'video', url: 'video2.mp4', position: 5 },
-  { type: 'video', url: 'video3.mp4', position: 10 }
+
+          <h3 id="concatenate-videos" class="text-xl font-bold mt-6 mb-2">
+            Concatenate multiple videos
+          </h3>
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden mb-8">
+            <div
+              class="px-4 py-2 bg-gray-900 border-b border-gray-700 flex items-center"
+            >
+              <span class="text-gray-400 text-sm">example.js</span>
+            </div>
+            <pre
+              class="line-numbers p-4 m-0"
+            ><code class="language-javascript">await project.load([
+  { type: 'video', url: 'video1.mp4', position: 0, end: 5 },
+  { type: 'video', url: 'video2.mp4', position: 5, end: 10 },
+  { type: 'video', url: 'video3.mp4', position: 10, end: 15 }
 ]);
 
 await project.export({ outputPath: 'concatenated.mp4' });</code></pre>
           </div>
-          
-          <h3 class="text-xl font-bold mt-6 mb-2">Add text overlay</h3>
-          <div class="mockup-code mb-8">
-            <pre><code class="language-javascript">await project.load([
-  { type: 'video', url: 'background.mp4', position: 0 },
+
+          <h3 id="text-overlay" class="text-xl font-bold mt-6 mb-2">Add text overlay</h3>
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden mb-8">
+            <div
+              class="px-4 py-2 bg-gray-900 border-b border-gray-700 flex items-center"
+            >
+              <span class="text-gray-400 text-sm">example.js</span>
+            </div>
+            <pre
+              class="line-numbers p-4 m-0"
+            ><code class="language-javascript">await project.load([
+  { type: 'video', url: 'background.mp4', position: 0, end: 10 },
   { 
     type: 'text', 
     text: 'Hello World', 
@@ -500,21 +703,154 @@ await project.export({ outputPath: 'concatenated.mp4' });</code></pre>
 
 await project.export({ outputPath: 'text_overlay.mp4' });</code></pre>
           </div>
+
+          <h3 id="background-music" class="text-xl font-bold mt-6 mb-2">Add background music</h3>
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden mb-8">
+            <div
+              class="px-4 py-2 bg-gray-900 border-b border-gray-700 flex items-center"
+            >
+              <span class="text-gray-400 text-sm">example.js</span>
+            </div>
+            <pre
+              class="line-numbers p-4 m-0"
+            ><code class="language-javascript">await project.load([
+  { 
+    type: 'video', 
+    url: 'video.mp4', 
+    position: 0, 
+    end: 30,
+    // Lower the original video volume
+    volume: 0.3
+  },
+  { 
+    type: 'audio', 
+    url: 'music.mp3', 
+    position: 0, 
+    end: 30,
+    // Set the background music volume
+    volume: 0.8
+  }
+]);
+
+await project.export({ outputPath: 'video_with_music.mp4' });</code></pre>
+          </div>
+
+          <h3 id="custom-font" class="text-xl font-bold mt-6 mb-2">Use custom font for text</h3>
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden mb-8">
+            <div
+              class="px-4 py-2 bg-gray-900 border-b border-gray-700 flex items-center"
+            >
+              <span class="text-gray-400 text-sm">example.js</span>
+            </div>
+            <pre
+              class="line-numbers p-4 m-0"
+            ><code class="language-javascript">await project.load([
+  { type: 'video', url: 'background.mp4', position: 0, end: 10 },
+  { 
+    type: 'text', 
+    text: 'Custom Font Example', 
+    position: 2, 
+    end: 8,
+    fontSize: 64,
+    fontColor: 'white',
+    fontFile: './assets/fonts/Montserrat-Bold.ttf'
+  }
+]);
+
+await project.export({ outputPath: 'custom_font.mp4' });</code></pre>
+          </div>
+
+          <h3 id="text-with-stroke" class="text-xl font-bold mt-6 mb-2">Text with stroke</h3>
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden mb-8">
+            <div
+              class="px-4 py-2 bg-gray-900 border-b border-gray-700 flex items-center"
+            >
+              <span class="text-gray-400 text-sm">example.js</span>
+            </div>
+            <pre
+              class="line-numbers p-4 m-0"
+            ><code class="language-javascript">await project.load([
+  { type: 'video', url: 'background.mp4', position: 0, end: 10 },
+  { 
+    type: 'text', 
+    text: 'Stroke Text', 
+    position: 2, 
+    end: 8,
+    fontSize: 72,
+    fontColor: 'white',
+    // Add a black stroke
+    borderColor: 'black',
+    borderWidth: 3,
+  }
+]);
+
+await project.export({ outputPath: 'text_with_stroke.mp4' });</code></pre>
+          </div>
+
+          <h3 id="text-with-shadow" class="text-xl font-bold mt-6 mb-2">Text with shadow</h3>
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden mb-8">
+            <div
+              class="px-4 py-2 bg-gray-900 border-b border-gray-700 flex items-center"
+            >
+              <span class="text-gray-400 text-sm">example.js</span>
+            </div>
+            <pre
+              class="line-numbers p-4 m-0"
+            ><code class="language-javascript">await project.load([
+  { type: 'video', url: 'background.mp4', position: 0, end: 10 },
+  { 
+    type: 'text', 
+    text: 'Shadow Text', 
+    position: 2, 
+    end: 8,
+    fontSize: 72,
+    fontColor: 'white',
+    // Add a black shadow
+    shadowColor: '#000000',
+    shadowX: 4,
+    shadowY: 4,
+  }
+]);
+
+await project.export({ outputPath: 'text_with_shadow.mp4' });</code></pre>
+          </div>
         </section>
       </div>
     </div>
 
-    <div class="flex justify-center gap-8 py-4 border-t border-base-300 mx-auto">
-      <a href="https://github.com/ezffmpeg/ezffmpeg" class="text-base-content/70 hover:text-base-content underline">GitHub</a>
-      <a href="index.html" class="text-base-content/70 hover:text-base-content underline">Home</a>
-      <a href="https://twitter.com/coldwaterbottle" class="text-base-content/70 hover:text-base-content underline">Twitter</a>
+    <div
+      class="flex justify-center gap-8 py-4 border-t border-base-300 mx-auto"
+    >
+      <a
+        href="https://github.com/ezffmpeg/ezffmpeg"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-base-content/70 hover:text-base-content underline"
+        >GitHub</a
+      >
+      <a
+        href="index.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-base-content/70 hover:text-base-content underline"
+        >Home</a
+      >
+      <a
+        href="https://twitter.com/coldwaterbottle"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-base-content/70 hover:text-base-content underline"
+        >Twitter</a
+      >
     </div>
-
+    
     <footer class="footer footer-center pb-4 text-base-content/50">
-        <div>
-          <p class="font-light text-gray-400" style="font-size: 1rem;">© 2025 ezffmpeg · Built with 🍋 and ❤️</p>
-        </div>
-      </footer>
+      <div>
+        <p class="font-light text-gray-400" style="font-size: 1rem">
+          © 2025 ezffmpeg · Built with 🍋 and ❤️
+        </p>
+      </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>

@@ -1,8 +1,12 @@
 {
   "name": "ezffmpeg",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.3",
+  "description": "The eziest way to use ffmpeg",
   "main": "index.js",
+  "files": [
+    "/src",
+    "/fonts"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,8 +14,8 @@
     "type": "git",
     "url": "git+https://github.com/ezffmpeg/ezffmpeg.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "coldshower",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ezffmpeg/ezffmpeg/issues"
   },

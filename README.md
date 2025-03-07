@@ -1,6 +1,8 @@
-# 🍋 ezffmpeg 🎥 - the eziest way to use ffmpeg
+![ezffmpeg banner](https://github.com/ezffmpeg/ezffmpeg/blob/main/docs/assets/ezffmpeg-banner.png?raw=true)
 
 A simple and powerful Node.js wrapper for ffmpeg that makes editing videos easy
+
+[Demo](https://ezffmpeg.github.io/ezffmpeg) | [Full Documentation](https://ezffmpeg.github.io/ezffmpeg/docs.html)
 
 ## Features
 
@@ -26,13 +28,13 @@ Make sure you have ffmpeg installed on your system:
 
 ## Quick Start
 
-1. Require the package
+**1. Require the package**
 
 ```javascript
 const EZFFMPEG = require("ezffmpeg");
 ```
 
-2. Create a project
+**2. Create a project**
 
 ```javascript
 const project = new EZFFMPEG({
@@ -41,7 +43,7 @@ const project = new EZFFMPEG({
 });
 ```
 
-3. Load clips into project
+**3. Load clips into project**
 
 ```javascript
 await project.load([
@@ -76,13 +78,14 @@ await project.load([
 ]);
 ```
 
-4. Export
+**4. Export**
 
 ```javascript
 await project.export({
   outputPath: "./output.mp4",
 });
 ```
+
 
 ## Documentation
 

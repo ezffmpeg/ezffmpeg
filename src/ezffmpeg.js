@@ -95,7 +95,6 @@ class EZFFMPEG {
 
       let ffmpegCommand = `ffmpeg -y -i "${clipObj.url}" "${unrotatedUrl}"`;
 
-      console.log("Unrotating:", ffmpegCommand);
       exec(ffmpegCommand, (error, stdout, stderr) => {
         if (error) {
           console.error("Error unrotating video:", error);
@@ -133,14 +132,30 @@ class EZFFMPEG {
   }
 
   _loadText(clipObj) {
-    this.textClips.push({
+    const clip = {
       ...clipObj,
-      fontFile: clipObj.fontFile || "./fonts/Arial-Bold.ttf",
-      fontSize: clipObj.fontSize || 100,
+      fontFile: clipObj.fontFile || path.join(__dirname, '..', "./fonts/Arial-Bold.ttf"),
+      fontSize: clipObj.fontSize || 48,
       fontColor: clipObj.fontColor || "#000000",
-      centerX: clipObj.centerX || 0,
-      centerY: clipObj.centerY || 0,
-    });
+    };
+
+    if (typeof clipObj.centerX === 'number') {
+      clip.centerX = clipObj.centerX;
+    } else if (typeof clipObj.x === 'number') {
+      clip.x = clipObj.x;
+    } else {
+      clip.centerX = 0;
+    }
+
+    if (typeof clipObj.centerY === 'number') {
+      clip.centerY = clipObj.centerY;
+    } else if (typeof clipObj.y === 'number') { 
+      clip.y = clipObj.y; 
+    } else {
+      clip.centerY = 0;
+    }
+
+    this.textClips.push(clip);
   }
 
   load(clipObjs) {
@@ -377,7 +392,8 @@ class EZFFMPEG {
 
       ffmpegCmd += `"${exportOptions.outputPath}"`;
 
-      console.log("Executing ffmpeg command:", ffmpegCmd);
+      // console.log("Executing ffmpeg command:", ffmpegCmd);
+      console.log('ezffmpeg: Export started')
 
       // Execute ffmpeg
       exec(ffmpegCmd, (error, stdout, stderr) => {
@@ -388,6 +404,7 @@ class EZFFMPEG {
           return;
         }
         resolve(exportOptions.outputPath);
+        console.log('ezffmpeg: Export finished')
         this._cleanup();
       });
     });
