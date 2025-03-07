@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="bumblebee">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ezffmpeg API Documentation - The eziest way to use ffmpeg"
+    />
+    <title>ezffmpeg API Documentation - The eziest way to use ffmpeg</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍋</text></svg>"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5.0.0/themes.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .mockup-code pre code {
+        font-family: "Fira Code", Consolas, Monaco, monospace;
+      }
+      .mockup-code .token.comment {
+        color: #6a9955;
+      }
+      .mockup-code .token.string {
+        color: #ce9178;
+      }
+      .mockup-code .token.number {
+        color: #b5cea8;
+      }
+      .mockup-code .token.property {
+        color: #9cdcfe;
+      }
+      .mockup-code .token.keyword {
+        color: #569cd6;
+      }
+      pre[class*="language-"] {
+        border-radius: 0 0 0.5rem 0.5rem;
+        margin: 0;
+        font-size: 0.85rem;
+      }
+
+      .line-numbers .line-numbers-rows {
+        border-right: 1px solid #374151;
+      }
+
+      .code-window {
+        border-radius: 0.5rem;
+        overflow: hidden;
+      }
+
+      .code-header {
+        background-color: #1f2937;
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid #374151;
+        display: flex;
+        align-items: center;
+      }
+
+      .window-button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 6px;
+      }
+
+      /* Style for the setup code blocks */
+      .setup-code pre {
+        border-radius: 0.5rem;
+        background-color: #1f2937;
+        overflow: hidden;
+      }
+
+      .setup-code pre code {
+        font-family: "Fira Code", Consolas, Monaco, monospace;
+        font-size: 0.85rem;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen">
+    <div class="navbar border-b border-base-300">
+      <div class="navbar-start">
+        <a href="index.html" class="text-xl font-bold flex items-center gap-2">
+          <span class="text-2xl">🍋</span> ezffmpeg <span class="text-2xl">🎥</span>
+        </a>
+      </div>
+      <div class="navbar-end">
+        <a href="https://github.com/ezffmpeg/ezffmpeg" class="btn btn-ghost">
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row">
+      <!-- Sidebar -->
+      <div class="w-full md:w-64 p-4 border-r border-base-300">
+        <div class="sticky top-4">
+          <div class="mb-6">
+            <h3 class="font-bold uppercase text-xs tracking-wider text-base-content/70 mb-2">OVERVIEW</h3>
+            <ul class="menu menu-compact">
+              <li><a href="#getting-started" class="font-medium">Get Started</a></li>
+            </ul>
+          </div>
+          
+          <div class="mb-6">
+            <h3 class="font-bold uppercase text-xs tracking-wider text-base-content/70 mb-2">API</h3>
+            <ul class="menu menu-compact">
+              <li><a href="#constructor" class="font-medium">Constructor</a></li>
+              <li><a href="#load" class="font-medium">load()</a></li>
+              <li><a href="#export" class="font-medium">export()</a></li>
+            </ul>
+          </div>
+          
+          <div class="mb-6">
+            <h3 class="font-bold uppercase text-xs tracking-wider text-base-content/70 mb-2">GUIDES</h3>
+            <ul class="menu menu-compact">
+              <li><a href="#examples" class="font-medium">Examples</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <div class="flex-1 p-4 md:p-8 max-w-4xl">
+        <section id="getting-started" class="mb-16">
+          <h1 class="text-4xl font-bold mb-6">Getting Started</h1>
+          
+          <p class="mb-4">Create and edit videos with JavaScript using ezffmpeg.</p>
+          
+          <h2 class="text-2xl font-bold mt-8 mb-4">Install with npm</h2>
+          <div class="mockup-code mb-8">
+            <pre><code class="language-bash">npm install ezffmpeg</code></pre>
+          </div>
+          
+          <h2 class="text-2xl font-bold mt-8 mb-4">Basic usage</h2>
+          <div class="mockup-code mb-8">
+            <pre><code class="language-javascript">const ezffmpeg = require('ezffmpeg');
+
+const project = new ezffmpeg({
+  width: 1080,
+  height: 1920
+});
+
+async function createVideo() {
+  await project.load([
+    {
+      type: 'video',
+      url: 'input.mp4'
+    }
+  ]);
+  
+  await project.export({
+    outputPath: 'output.mp4'
+  });
+}
+
+createVideo();</code></pre>
+          </div>
+        </section>
+        
+        <section id="constructor" class="mb-16">
+          <h1 class="text-4xl font-bold mb-6">Constructor</h1>
+          
+          <p class="mb-4">Create a new ezffmpeg instance with your desired settings.</p>
+          
+          <div class="mockup-code mb-8">
+            <pre><code class="language-javascript">const project = new ezffmpeg({
+  width: 1920,    // Output video width
+  height: 1080,   // Output video height
+  fps: 30,        // Frames per second (optional)
+  audioCodec: 'aac', // Audio codec (optional)
+  videoCodec: 'libx264' // Video codec (optional)
+});</code></pre>
+          </div>
+          
+          <h3 class="text-xl font-bold mt-6 mb-2">Available options</h3>
+          
+          <div class="overflow-x-auto">
+            <table class="table w-full">
+              <thead>
+                <tr>
+                  <th>Option</th>
+                  <th>Type</th>
+                  <th>Default</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>width</td>
+                  <td>number</td>
+                  <td>1920</td>
+                  <td>Output video width in pixels</td>
+                </tr>
+                <tr>
+                  <td>height</td>
+                  <td>number</td>
+                  <td>1080</td>
+                  <td>Output video height in pixels</td>
+                </tr>
+                <tr>
+                  <td>fps</td>
+                  <td>number</td>
+                  <td>30</td>
+                  <td>Frames per second</td>
+                </tr>
+                <tr>
+                  <td>audioCodec</td>
+                  <td>string</td>
+                  <td>'aac'</td>
+                  <td>Audio codec to use</td>
+                </tr>
+                <tr>
+                  <td>videoCodec</td>
+                  <td>string</td>
+                  <td>'libx264'</td>
+                  <td>Video codec to use</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        <section id="load" class="mb-16">
+          <h1 class="text-4xl font-bold mb-6">load() API</h1>
+          
+          <p class="mb-4">Load media elements (videos, images, audio, text) into your project.</p>
+          
+          <div class="mockup-code mb-8">
+            <pre><code class="language-javascript">await project.load([
+  {
+    type: 'video',
+    url: 'video.mp4',
+    position: 0,
+    end: 10,
+    cutFrom: 2,
+    cutTo: 8
+  },
+  {
+    type: 'audio',
+    url: 'audio.mp3',
+    position: 0,
+    end: 15
+  },
+  {
+    type: 'text',
+    text: 'Hello World',
+    position: 5,
+    end: 10,
+    fontSize: 48,
+    fontColor: 'white'
+  }
+]);</code></pre>
+          </div>
+          
+          <h3 class="text-xl font-bold mt-6 mb-2">Media options</h3>
+          
+          <h4 class="text-lg font-bold mt-4 mb-2">Video options</h4>
+          <div class="overflow-x-auto mb-6">
+            <table class="table w-full">
+              <thead>
+                <tr>
+                  <th>Option</th>
+                  <th>Type</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>type</td>
+                  <td>string</td>
+                  <td>Must be 'video'</td>
+                </tr>
+                <tr>
+                  <td>url</td>
+                  <td>string</td>
+                  <td>Path or URL to the video file</td>
+                </tr>
+                <tr>
+                  <td>position</td>
+                  <td>number</td>
+                  <td>Start position in seconds in the output video</td>
+                </tr>
+                <tr>
+                  <td>end</td>
+                  <td>number</td>
+                  <td>End position in seconds in the output video</td>
+                </tr>
+                <tr>
+                  <td>cutFrom</td>
+                  <td>number</td>
+                  <td>Optional: Start cutting from this position in the source video</td>
+                </tr>
+                <tr>
+                  <td>cutTo</td>
+                  <td>number</td>
+                  <td>Optional: End cutting at this position in the source video</td>
+                </tr>
+                <tr>
+                  <td>rotation</td>
+                  <td>number</td>
+                  <td>Optional: Rotation angle in degrees</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <h4 class="text-lg font-bold mt-4 mb-2">Audio options</h4>
+          <div class="overflow-x-auto mb-6">
+            <table class="table w-full">
+              <thead>
+                <tr>
+                  <th>Option</th>
+                  <th>Type</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>type</td>
+                  <td>string</td>
+                  <td>Must be 'audio'</td>
+                </tr>
+                <tr>
+                  <td>url</td>
+                  <td>string</td>
+                  <td>Path or URL to the audio file</td>
+                </tr>
+                <tr>
+                  <td>position</td>
+                  <td>number</td>
+                  <td>Start position in seconds in the output video</td>
+                </tr>
+                <tr>
+                  <td>end</td>
+                  <td>number</td>
+                  <td>End position in seconds in the output video</td>
+                </tr>
+                <tr>
+                  <td>volume</td>
+                  <td>number</td>
+                  <td>Optional: Volume level (1.0 is normal)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <h4 class="text-lg font-bold mt-4 mb-2">Text options</h4>
+          <div class="overflow-x-auto mb-6">
+            <table class="table w-full">
+              <thead>
+                <tr>
+                  <th>Option</th>
+                  <th>Type</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>type</td>
+                  <td>string</td>
+                  <td>Must be 'text'</td>
+                </tr>
+                <tr>
+                  <td>text</td>
+                  <td>string</td>
+                  <td>The text to display</td>
+                </tr>
+                <tr>
+                  <td>position</td>
+                  <td>number</td>
+                  <td>Start position in seconds in the output video</td>
+                </tr>
+                <tr>
+                  <td>end</td>
+                  <td>number</td>
+                  <td>End position in seconds in the output video</td>
+                </tr>
+                <tr>
+                  <td>fontSize</td>
+                  <td>number</td>
+                  <td>Font size in pixels</td>
+                </tr>
+                <tr>
+                  <td>fontColor</td>
+                  <td>string</td>
+                  <td>Font color (CSS color name or hex)</td>
+                </tr>
+                <tr>
+                  <td>x</td>
+                  <td>number</td>
+                  <td>Optional: X position (default: centered)</td>
+                </tr>
+                <tr>
+                  <td>y</td>
+                  <td>number</td>
+                  <td>Optional: Y position (default: centered)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        <section id="export" class="mb-16">
+          <h1 class="text-4xl font-bold mb-6">export() API</h1>
+          
+          <p class="mb-4">Export your project to a video file.</p>
+          
+          <div class="mockup-code mb-8">
+            <pre><code class="language-javascript">await project.export({
+  outputPath: 'output.mp4',
+  quality: 'high',
+  overwrite: true
+});</code></pre>
+          </div>
+          
+          <h3 class="text-xl font-bold mt-6 mb-2">Export options</h3>
+          
+          <div class="overflow-x-auto">
+            <table class="table w-full">
+              <thead>
+                <tr>
+                  <th>Option</th>
+                  <th>Type</th>
+                  <th>Default</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>outputPath</td>
+                  <td>string</td>
+                  <td>required</td>
+                  <td>Path where the output video will be saved</td>
+                </tr>
+                <tr>
+                  <td>quality</td>
+                  <td>string</td>
+                  <td>'medium'</td>
+                  <td>Video quality: 'low', 'medium', 'high'</td>
+                </tr>
+                <tr>
+                  <td>overwrite</td>
+                  <td>boolean</td>
+                  <td>false</td>
+                  <td>Whether to overwrite existing files</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        <section id="examples" class="mb-16">
+          <h1 class="text-4xl font-bold mb-6">Examples</h1>
+          
+          <h3 class="text-xl font-bold mt-6 mb-2">Concatenate multiple videos</h3>
+          <div class="mockup-code mb-8">
+            <pre><code class="language-javascript">await project.load([
+  { type: 'video', url: 'video1.mp4', position: 0 },
+  { type: 'video', url: 'video2.mp4', position: 5 },
+  { type: 'video', url: 'video3.mp4', position: 10 }
+]);
+
+await project.export({ outputPath: 'concatenated.mp4' });</code></pre>
+          </div>
+          
+          <h3 class="text-xl font-bold mt-6 mb-2">Add text overlay</h3>
+          <div class="mockup-code mb-8">
+            <pre><code class="language-javascript">await project.load([
+  { type: 'video', url: 'background.mp4', position: 0 },
+  { 
+    type: 'text', 
+    text: 'Hello World', 
+    position: 2, 
+    end: 8,
+    fontSize: 64,
+    fontColor: 'white'
+  }
+]);
+
+await project.export({ outputPath: 'text_overlay.mp4' });</code></pre>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="flex justify-center gap-8 py-4 border-t border-base-300 mx-auto">
+      <a href="https://github.com/ezffmpeg/ezffmpeg" class="text-base-content/70 hover:text-base-content underline">GitHub</a>
+      <a href="index.html" class="text-base-content/70 hover:text-base-content underline">Home</a>
+      <a href="https://twitter.com/coldwaterbottle" class="text-base-content/70 hover:text-base-content underline">Twitter</a>
+    </div>
+
+    <footer class="footer footer-center pb-4 text-base-content/50">
+        <div>
+          <p class="font-light text-gray-400" style="font-size: 1rem;">© 2025 ezffmpeg · Built with 🍋 and ❤️</p>
+        </div>
+      </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  </body>
+</html>

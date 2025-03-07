@@ -1,87 +1,347 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EZFFMPEG - The eziest way to use ffmpeg</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Add Prism CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-</head>
-<body>
-    <div class="container">
-        <div class="logo">
-            <h1>EZFFMPEG</h1>
-            <h2>The eziest way to use ffmpeg</h2>
-        </div>
+<html lang="en" data-theme="bumblebee">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ezffmpeg - The eziest way to use ffmpeg"
+    />
+    <title>ezffmpeg - The eziest way to use ffmpeg</title>
 
-        <div class="buttons">
-            <a href="https://www.npmjs.com/package/ezffmpeg" class="button primary-button">
-                📦 Install Now
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍋</text></svg>"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5.0.0/themes.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .mockup-code pre code {
+        font-family: "Fira Code", Consolas, Monaco, monospace;
+      }
+      .mockup-code .token.comment {
+        color: #6a9955;
+      }
+      .mockup-code .token.string {
+        color: #ce9178;
+      }
+      .mockup-code .token.number {
+        color: #b5cea8;
+      }
+      .mockup-code .token.property {
+        color: #9cdcfe;
+      }
+      .mockup-code .token.keyword {
+        color: #569cd6;
+      }
+      pre[class*="language-"] {
+        border-radius: 0 0 0.5rem 0.5rem;
+        margin: 0;
+        font-size: 0.85rem;
+      }
+
+      .line-numbers .line-numbers-rows {
+        border-right: 1px solid #374151;
+      }
+
+      .code-window {
+        border-radius: 0.5rem;
+        overflow: hidden;
+      }
+
+      .code-header {
+        background-color: #1f2937;
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid #374151;
+        display: flex;
+        align-items: center;
+      }
+
+      .window-button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 6px;
+      }
+
+      /* Style for the setup code blocks */
+      .setup-code pre {
+        border-radius: 0.5rem;
+        background-color: #1f2937;
+        overflow: hidden;
+      }
+
+      .setup-code pre code {
+        font-family: "Fira Code", Consolas, Monaco, monospace;
+        font-size: 0.85rem;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen">
+    <div class="hero min-h-[50vh] flex items-center justify-center">
+      <div class="hero-content text-center w-full">
+        <div class="max-w-3xl mx-auto">
+          <div class="flex justify-center items-center gap-4 mb-4">
+            <span class="text-6xl">🍋</span>
+            <h1 class="text-6xl font-bold font-inter tracking-tight">
+              ezffmpeg
+            </h1>
+            <span class="text-6xl">🎥</span>
+          </div>
+          <h2
+            class="text-3xl font-light text-base-content/80 mt-6 mb-4 text-center"
+          >
+            Edit videos without having to use ffmpeg
+          </h2>
+          <div class="flex justify-center gap-4 mt-8">
+            <a href="/docs.html" class="btn bg-white"> 📚 API Documentation </a>
+            <a href="https://github.com/ezffmpeg/ezffmpeg" class="btn bg-white">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                />
+              </svg>
+              GitHub
             </a>
-            <a href="https://github.com/yourusername/ezffmpeg" class="button secondary-button">
-                <span>GitHub</span>
-            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-16 text-center">
+      <h2 class="text-2xl font-bold mb-8">Features</h2>
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 max-w-5xl mx-auto"
+      >
+        <div class="card bg-base-100 shadow-lg">
+          <div class="card-body items-center text-center">
+            <h3 class="card-title">🎬 Easy Concatenation</h3>
+            <p>Combine multiple videos and audio files with ease</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-lg">
+          <div class="card-body items-center text-center">
+            <h3 class="card-title">🔄 Auto iPhone Rotation</h3>
+            <p>Automatically handles iphone's video rotation and orientation</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-lg">
+          <div class="card-body items-center text-center">
+            <h3 class="card-title">💬 Text Overlay</h3>
+            <p>Add beautiful text overlays with full customization</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-lg">
+          <div class="card-body items-center text-center">
+            <h3 class="card-title">📦 Zero Dependencies</h3>
+            <p>
+              No external dependencies required, just ffmpeg installed on your
+              system
+            </p>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-lg">
+          <div class="card-body items-center text-center">
+            <h3 class="card-title">📐 Easy Video Scaling</h3>
+            <p>
+              Automatically scales and pads videos to match your desired
+              dimensions
+            </p>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-lg">
+          <div class="card-body items-center text-center">
+            <h3 class="card-title">⏱️ Position & Timing</h3>
+            <p>
+              Precise control over video positioning and timing in your final
+              output
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="text-2xl font-bold mt-36 mb-8">Setup</h2>
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 max-w-5xl mx-auto"
+      >
+        <div class="text-center">
+          <div
+            class="bg-primary text-primary-content w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-4"
+          >
+            <span class="font-bold">1</span>
+          </div>
+          <h3 class="font-bold mb-2">Install and initialize</h3>
+          <p class="mb-4">Create a new instance with your desired dimensions</p>
+          <div class="setup-code max-w-xs mx-auto">
+            <pre><code class="language-javascript">const ezffmpeg = require('ezffmpeg');
+
+const project = new ezffmpeg({
+  width: 1080,
+  height: 1920
+});</code></pre>
+          </div>
         </div>
 
-        <div class="features">
-            <div class="feature">Easy video concatenation</div>
-            <div class="feature">Automatic rotation handling</div>
-            <div class="feature">Video scaling and padding</div>
-            <div class="feature">Audio processing</div>
-            <div class="feature">Text overlay support</div>
-            <div class="feature">Position and timing control</div>
+        <div class="text-center">
+          <div
+            class="bg-primary text-primary-content w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-4"
+          >
+            <span class="font-bold">2</span>
+          </div>
+          <h3 class="font-bold mb-2">Load your clips</h3>
+          <p class="mb-4">Add videos, audio, and text with precise timing</p>
+          <div class="setup-code max-w-xs mx-auto">
+            <pre><code class="language-javascript">await project.load(clips);</code></pre>
+          </div>
         </div>
 
-        <div class="example">
-            <div class="code-block">
-                <pre><code class="language-javascript">const EZFFMPEG = require('ezffmpeg');
+        <div class="text-center">
+          <div
+            class="bg-primary text-primary-content w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-4"
+          >
+            <span class="font-bold">3</span>
+          </div>
+          <h3 class="font-bold mb-2">Export your video</h3>
+          <p class="mb-4">Generate your final video with one command</p>
+          <div class="setup-code max-w-xs mx-auto">
+            <pre><code class="language-javascript">await project.export({
+  outputPath: 'output.mp4'
+});</code></pre>
+          </div>
+        </div>
+      </div>
 
-const ffmpeg = new EZFFMPEG({
-    width: 1920,
-    height: 1080
+      <div class="flex mx-auto flex-col gap-4 mt-36">
+        <h2 class="text-2xl font-bold">Example</h2>
+        <div class="flex gap-4 justify-center">
+          <div class="flex-1 text-left max-w-[600px]">
+            <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+              <div
+                class="px-4 py-2 bg-gray-900 border-b border-gray-700 flex items-center"
+              >
+                <div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
+                <span class="text-gray-400 text-sm ml-2">example.js</span>
+              </div>
+              <pre
+                class="line-numbers p-4 m-0"
+              ><code class="language-javascript">const ezffmpeg = require('ezffmpeg');
+
+const project = new ezffmpeg({
+  width: 1080,
+  height: 1920
 });
 
 // Load and concatenate videos
-await ffmpeg.loadMultiple([
+async function loadAndExportVideos() {
+  await project.load([
     {
-        type: 'video',
-        url: 'video1.mp4',
-        rotation: -90
+      type: 'video',
+      url: 'train.mp4',
+      position: 0,
+      cutFrom: 1,
+      end: 8,
     },
     {
-        type: 'video',
-        url: 'video2.mp4'
+      type: 'video',
+      url: 'forest.mp4',
+      position: 8,
+      end: 12,
     },
     {
-        type: 'text',
-        text: 'Hello World',
-        fontSize: 48,
-        fontColor: 'white'
+      type: 'video',
+      url: 'river.mp4',
+      position: 12,
+      end: 16,
+    },
+    {
+      type: 'audio',
+      url: 'music.mp3',
+      position: 1,
+      end: 18
+    },
+    {
+      type: 'text',
+      text: 'summer vlog',
+      fontSize: 48,
+      fontColor: 'white',
+      position: 3,
+      end: 8
+    },
+    {
+      type: 'text',
+      text: 'hope you like ezffmpeg!',
+      fontSize: 48,
+      fontColor: 'white',
+      position: 16,
+      end: 18,
     }
-]);
+  ]);
 
-// Export the final video
-await ffmpeg.export({
+  await project.export({
     outputPath: 'output.mp4'
-});</code></pre>
-            </div>
-            <div class="video-preview">
-                <video width="100%" controls>
-                    <source src="path/to/demo.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
+  });
+}
 
-        <div class="version">
-            <a href="https://github.com/yourusername/ezffmpeg/blob/main/docs/api.md">Documentation</a>
-            · v1.0.0
+loadAndExportVideos();
+</code></pre>
+            </div>
+          </div>
+          <div class="rounded-lg overflow-hidden max-w-[600px]">
+            <video width="100%" controls class="w-full mx-auto">
+              <source src="assets/output.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div class="text-xs text-base-content/60 mt-2 text-center">
+              Videos from <a href="https://pixabay.com/users/kanenori-4749850/" class="underline hover:text-base-content/80">@kanenori</a> 
+              and audio from <a href="https://pixabay.com/users/vividillustrate-31929813/" class="underline hover:text-base-content/80">@vividillustrate</a> on Pixabay
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
-    <!-- Add Prism JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
-</body>
+    <div class="flex justify-center gap-8 py-4 border-base-300 max-w-3xl mx-auto mt-16">
+      <a href="https://github.com/ezffmpeg/ezffmpeg" class="text-base-content/70 hover:text-base-content underline">GitHub</a>
+      <a href="docs.html" class="text-base-content/70 hover:text-base-content underline">API Documentation</a>
+      <a href="https://twitter.com/coldwaterbottle" class="text-base-content/70 hover:text-base-content underline">Twitter</a>
+    </div>
+    
+    <footer class="footer footer-center pb-4 text-base-content/50">
+      <div>
+        <p class="font-light text-gray-400" style="font-size: 1rem;">© 2025 ezffmpeg · Built with 🍋 and ❤️</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  </body>
 </html>
