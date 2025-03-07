@@ -31,13 +31,13 @@ Make sure you have ffmpeg installed on your system:
 **1. Require the package**
 
 ```javascript
-const EZFFMPEG = require("ezffmpeg");
+const ezffmpeg = require("ezffmpeg");
 ```
 
 **2. Create a project**
 
 ```javascript
-const project = new EZFFMPEG({
+const project = new ezffmpeg({
   width: 1080,
   height: 1920,
 });
