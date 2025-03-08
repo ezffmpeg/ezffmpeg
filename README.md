@@ -89,4 +89,4 @@ await project.export({
 
 ## Documentation
 
-Find the full API documentation [here](https://github.com/yourusername/ezffmpeg/blob/main/docs/api.md).
+Find the full API documentation [here](https://ezffmpeg.github.io/ezffmpeg).
