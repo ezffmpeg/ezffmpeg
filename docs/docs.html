@@ -232,7 +232,15 @@ async function createVideo() {
   await project.load([
     {
       type: 'video',
-      url: 'input.mp4'
+      url: 'input.mp4',
+      position: 0,
+      end: 5
+    },
+    {
+      type: 'video',
+      url: 'input2.mp4',
+      position: 5,
+      end: 10
     }
   ]);
   
