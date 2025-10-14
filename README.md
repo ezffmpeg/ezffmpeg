@@ -2,7 +2,7 @@
 
 A simple and powerful Node.js wrapper for ffmpeg that makes editing videos easy
 
-[Demo](https://ezffmpeg.github.io/ezffmpeg) | [Full Documentation](https://ezffmpeg.github.io/ezffmpeg/docs.html)
+[Demo](https://ezffmpeg.github.io/ezffmpeg) | [Full Documentation](https://ezffmpeg.github.io/ezffmpeg/docs.html) | [NPM](https://www.npmjs.com/package/ezffmpeg)
 
 ## Features
 
